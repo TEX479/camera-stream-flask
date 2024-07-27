@@ -13,10 +13,10 @@ pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def index() -> str:
     return render_template('index.html') #you can customze index.html here
 
-def gen(camera):
+def gen(camera):# -> Generator[bytes, Any, NoReturn]:
     #get camera frame
     while True:
         frame = camera.get_frame()
@@ -24,13 +24,13 @@ def gen(camera):
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 @app.route('/video_feed')
-def video_feed():
+def video_feed() -> Response:
     return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # Take a photo when pressing camera button
 @app.route('/picture')
-def take_picture():
+def take_picture() -> str:
     pi_camera.take_picture()
     return "None"
 

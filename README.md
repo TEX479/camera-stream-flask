@@ -41,7 +41,8 @@ sudo pip3 install opencv-python
 
 ```
 
-Note: This installation of opencv may take a while depending on your pi model.
+Note: This installation of opencv may take a while depending on your pi model.\
+another Note: If either of the librarys (installed with `apt-get`) fail to install, the program might still be functional, due to some internal changes regarding the camera.
 
 OpenCV alternate installation (in the event of failed opencv builds):
 
